@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -12,7 +12,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
-  const [passwordLengthError, setPasswordLengthError] = useState(false); // State for password length error
+  const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,9 +20,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     const isFormValid = Object.values(formData).every((value) => value !== "");
@@ -75,7 +73,7 @@ const SignUp = () => {
         showConfirmButton: false,
       });
 
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("Error creating user:", error);
     }
@@ -135,7 +133,7 @@ const SignUp = () => {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            {passwordLengthError && ( // Render error message if password length is less than 6
+            {passwordLengthError && (
               <span className="text-red-600 mt-1">
                 Password must be at least 6 characters long
               </span>

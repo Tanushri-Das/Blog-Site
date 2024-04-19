@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "./Header.css";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-
+  const { authInfo } = useContext(AuthContext);
+  const { user, logOut } = authInfo;
   // Function to toggle the visibility of the responsive menu
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -15,7 +17,12 @@ const Header = () => {
   const closeMenu = () => {
     setShowMenu(false);
   };
-
+  console.log("User", user);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <header>
       {/* Header container with app name, navigation links, and menu icon */}
@@ -24,15 +31,21 @@ const Header = () => {
         <Link to="/" className="app-name">
           Blog Site
         </Link>
-
-        {/* Navigation links for larger screens */}
         <div className="nav-links">
           <NavLink to="/" className="home-link" onClick={closeMenu}>
             Home
           </NavLink>
-          <NavLink to="/login" className="home-link" onClick={closeMenu}>
-            Login
-          </NavLink>
+          {user ? (
+            <div className="user-info">
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <NavLink to="/login" className="home-link" onClick={closeMenu}>
+              Login
+            </NavLink>
+          )}
         </div>
 
         {/* Menu icon for small screens */}
@@ -48,9 +61,22 @@ const Header = () => {
           <NavLink to="/" className="home-link" onClick={closeMenu}>
             Home
           </NavLink>
-          <NavLink to="/login" className="home-link" onClick={closeMenu}>
-            Login
-          </NavLink>
+          <div className="nav-links">
+            <NavLink to="/" className="home-link" onClick={closeMenu}>
+              Home
+            </NavLink>
+            {user ? (
+              <div className="user-info">
+                <button className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <NavLink to="/login" className="home-link" onClick={closeMenu}>
+                Login
+              </NavLink>
+            )}
+          </div>
         </div>
       )}
     </header>
