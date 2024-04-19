@@ -1,0 +1,146 @@
+header {
+  background-color: #3944bc;
+  color: #fff;
+  padding: 20px 60px;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket {
+  margin-right: 5px;
+}
+.app-name {
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-link {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  padding-right: 40px;
+}
+
+.shopping-cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: 5px;
+  right: 48px;
+  background-color: white;
+  color: black;
+  font-weight: 800;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 1rem;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.responsive-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background-color: #3944bc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.responsive-menu a {
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    padding: 20px;
+  }
+  .cart-count {
+    position: absolute;
+    top: 82px;
+    right: 115px;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 1rem;
+  }
+  .shopping-cart-icon {
+    margin-top: 15px;
+  }
+  .app-name {
+    font-size: 20px;
+  }
+  .home-link {
+    font-size: 18px;
+  }
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .responsive-menu {
+    top: 60px;
+  }
+}
+
+/* Hide responsive menu when screen width is greater than 600px */
+@media screen and (min-width: 601px) {
+  .responsive-menu {
+    display: none;
+  }
+}
+@media (min-width: 601px) and (max-width: 750px) {
+  .home-link {
+    padding-right: 20px;
+    font-size: 20px;
+  }
+  header {
+    padding: 20px 25px;
+  }
+  .app-name {
+    font-size: 25px;
+  }
+  .cart-count {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 1rem;
+  }
+}
