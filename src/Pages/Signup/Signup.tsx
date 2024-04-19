@@ -14,7 +14,6 @@ const SignUp = () => {
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -58,9 +57,16 @@ const SignUp = () => {
     setPasswordLengthError(false);
 
     try {
-      await createUser(formData.email, formData.password);
+      // Assuming createUser returns some user object after successful signup
+      const user = await createUser(formData.email, formData.password);
+
+      // Combine uid and email into a single string
+      const userDetails = JSON.stringify({ uid: user.uid, email: user.email });
+
+      // Save userDetails to localStorage with key "personal-details"
+      localStorage.setItem("personal-details", userDetails);
+
       setFormData({
-        name: "",
         email: "",
         password: "", // Clear password field
         confirmPassword: "", // Clear confirm password field
@@ -86,18 +92,6 @@ const SignUp = () => {
           <h1 className="text-black text-center text-3xl mb-6 font-bold">
             Sign Up
           </h1>
-          <div className="mb-3">
-            <label className="block text-black text-[16px] font-semibold mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              className="form-input"
-              onChange={handleInputChange}
-            />
-          </div>
           <div className="mb-3">
             <label className="block text-black text-[16px] font-semibold mb-1">
               Email

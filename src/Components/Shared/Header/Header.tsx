@@ -35,6 +35,9 @@ const Header = () => {
           <NavLink to="/" className="home-link" onClick={closeMenu}>
             Home
           </NavLink>
+          <NavLink to="/personal-details" className="home-link" onClick={closeMenu}>
+           Personal
+          </NavLink>
           {user ? (
             <div className="user-info">
               <button className="logout-btn" onClick={handleLogout}>
