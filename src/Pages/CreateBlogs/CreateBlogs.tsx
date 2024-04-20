@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CreateBlogs = () => {
@@ -10,7 +11,7 @@ const CreateBlogs = () => {
   const [contentTypeError, setContentTypeError] = useState("");
   const [contentImage, setContentImage] = useState<File | null>(null);
   const [contentImageError, setContentImageError] = useState(false);
-
+  const navigate = useNavigate();
   const img_hosting_token = "5a3c594cf3fbe5d54c7766406d0635b3";
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -93,12 +94,13 @@ const CreateBlogs = () => {
             timer: 1500,
             showConfirmButton: false,
           });
-
+          navigate("/blogs");
           // Clear form fields after successful submission
           setTitle("");
           setDescription("");
           setContentType("");
           setContentImage(null);
+          
         }
       })
       .catch((error) => {

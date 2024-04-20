@@ -49,6 +49,14 @@ const Header = () => {
           >
             Create Blog
           </NavLink>
+          <NavLink
+            to="/blogs"
+            className="home-link"
+            onClick={closeMenu}
+          >
+            Blogs
+          </NavLink>
+         
           {user ? (
             <div className="user-info">
               <button className="logout-btn" onClick={handleLogout}>
