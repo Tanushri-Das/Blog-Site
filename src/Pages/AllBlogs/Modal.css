@@ -1,42 +1,41 @@
 /* Modal container */
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90%;
-    width: 400px;
-    max-height: 90%;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    z-index: 999;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
-  }
-  
-  /* Modal open state */
-  .modal.open {
-    transform: translate(-50%, -50%) scale(1); /* Apply a scale effect for open state */
-  }
-  /* Overlay background */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 998;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  
-  /* Overlay open state */
-  .overlay.open {
-    opacity: 1; /* Make the overlay fully visible */
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  width: 400px;
+  max-height: 90%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+/* Modal open state */
+.modal.open {
+  transform: translate(-50%, -50%) scale(1); /* Apply a scale effect for open state */
+}
+/* Overlay background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Overlay open state */
+.overlay.open {
+  opacity: 1; /* Make the overlay fully visible */
+}

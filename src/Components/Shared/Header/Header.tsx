@@ -43,6 +43,14 @@ const Header = () => {
             Personal
           </NavLink>
           <NavLink
+            to="/profile"
+            className="home-link"
+            onClick={closeMenu}
+          >
+            Profile
+          </NavLink>
+          
+          <NavLink
             to="/create-blogs"
             className="home-link"
             onClick={closeMenu}
