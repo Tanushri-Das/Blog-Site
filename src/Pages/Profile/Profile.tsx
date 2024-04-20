@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HiPencilSquare } from "react-icons/hi2";
 import ProfileModal from "./ProfileModal";
 import "./Profile.css";
+import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner";
 
 const Profile = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -35,7 +36,11 @@ const Profile = () => {
       <div className="font-bold uppercase flex justify-center mt-16 items-center">
         <h3 className="text-3xl">User Profile</h3>
       </div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && (
+        <div>
+          <CustomSpinner />
+        </div>
+      )}
       {!isLoading && !userData && <div>No user data found</div>}
       {!isLoading && userData && (
         <div className="mt-10 table-container sm:mx-6 md:mx-8 lg:mx-20">

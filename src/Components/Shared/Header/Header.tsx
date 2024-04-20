@@ -67,7 +67,7 @@ const Header = () => {
          
           {user ? (
             <div className="user-info">
-              <button className="logout-btn" onClick={handleLogout}>
+              <button className="home-link" onClick={handleLogout}>
                 Logout
               </button>
             </div>
