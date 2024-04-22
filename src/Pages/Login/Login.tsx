@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Login.css";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
@@ -13,26 +13,21 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleEmailBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    setUserEmail(email);
-    console.log(email);
-  };
-
+  
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     try {
       await login(email, password);
+      const user = JSON.parse(localStorage.getItem("personal-details") || "{}");
+      if (!user.name) {
+        navigate("/personal-details");
+      } else {
+        navigate(from, { replace: true });
+      }
       Swal.fire({
         title: "Good job!",
         text: "You have logged in successfully!",
@@ -40,7 +35,6 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-      navigate(from, { replace: true });
     } catch (error) {
       console.error("Login failed:", error);
       // Handle login failure
@@ -50,6 +44,15 @@ const Login = () => {
         icon: "error",
       });
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleEmailBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const email = e.target.value;
+    setUserEmail(email);
   };
 
   return (
