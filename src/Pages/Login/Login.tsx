@@ -9,11 +9,10 @@ const Login = () => {
   const { authInfo } = useContext(AuthContext);
   const { login } = authInfo;
   const [showPassword, setShowPassword] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
-  
+  const from = location.state?.from?.pathname || "";
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -26,7 +25,7 @@ const Login = () => {
       if (!user.name) {
         navigate("/personal-details");
       } else {
-        navigate(from, { replace: true });
+        navigate(from || "/", { replace: true });
       }
       Swal.fire({
         title: "Good job!",
@@ -50,11 +49,6 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleEmailBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    setUserEmail(email);
-  };
-
   return (
     <div className="flex justify-center items-center my-20">
       <div className="w-full flex-shrink-0 sm:max-w-lg bg-white mx-auto">
@@ -67,7 +61,6 @@ const Login = () => {
               Email
             </label>
             <input
-              onBlur={handleEmailBlur}
               type="email"
               name="email"
               placeholder="Email"

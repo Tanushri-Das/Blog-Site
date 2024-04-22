@@ -3,12 +3,23 @@ import { HiPencilSquare } from "react-icons/hi2";
 import ProfileModal from "./ProfileModal";
 import "./Profile.css";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [userData, setUserData] = useState<any>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const email = JSON.parse(
+      localStorage.getItem("personal-details") || "{}"
+    ).email;
+    if (!email) {
+      navigate("/login");
+    }
+  }, [navigate]);
+  
   useEffect(() => {
     const storedUserData = localStorage.getItem("personal-details");
     if (storedUserData) {

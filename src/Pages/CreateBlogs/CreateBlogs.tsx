@@ -16,10 +16,15 @@ const CreateBlogs = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   useEffect(() => {
+    const email = JSON.parse(
+      localStorage.getItem("personal-details") || "{}"
+    ).email;
     const userName = JSON.parse(
       localStorage.getItem("personal-details") || "{}"
     ).name;
-    if (!userName) {
+    if (!email) {
+      navigate("/login");
+    } else if (!userName) {
       navigate("/personal-details");
     }
   }, [navigate]);

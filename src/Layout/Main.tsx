@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Header from "../Components/Shared/Header/Header";
 import Footer from "../Components/Shared/Footer/Footer";
 

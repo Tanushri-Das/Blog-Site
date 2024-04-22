@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -18,6 +18,14 @@ const PersonalDetails = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    const email = JSON.parse(
+      localStorage.getItem("personal-details") || "{}"
+    ).email;
+    if (!email) {
+      navigate("/login");
+    }
+  }, [navigate]);
   const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 

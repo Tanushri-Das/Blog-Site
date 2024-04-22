@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import Modal from "./Modal";
 import { HiPencilSquare } from "react-icons/hi2";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface Blog {
   title: string;
@@ -15,7 +16,16 @@ const AllBlogs = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const email = JSON.parse(
+      localStorage.getItem("personal-details") || "{}"
+    ).email;
+    if (!email) {
+      navigate("/login");
+    }
+  }, [navigate]);
   useEffect(() => {
     const storedBlogs = localStorage.getItem("blogs");
     if (storedBlogs) {

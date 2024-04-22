@@ -21,14 +21,10 @@ const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}
 const Modal = ({ isOpen, onClose, onSave, blog }: Props) => {
   const [updatedBlog, setUpdatedBlog] = useState<Blog | null>(blog);
   const [newImage, setNewImage] = useState<File | null>(null);
-  const [previousImage, setPreviousImage] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setNewImage(e.target.files[0]);
-      setPreviousImage(
-        updatedBlog ? updatedBlog.contentImage : blog?.contentImage || null
-      );
 
       // Update the updatedBlog state with the new image URL
       if (updatedBlog) {
