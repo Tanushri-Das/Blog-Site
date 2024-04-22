@@ -15,7 +15,7 @@ interface Props {
   blog: Blog | null;
 }
 
-const img_hosting_token = "5a3c594cf3fbe5d54c7766406d0635b3";
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
 const Modal = ({ isOpen, onClose, onSave, blog }: Props) => {
@@ -114,7 +114,7 @@ const Modal = ({ isOpen, onClose, onSave, blog }: Props) => {
                 name="title"
                 id="blog-title"
                 value={updatedBlog?.title || blog.title}
-                className="form-input w-full mt-2 text-[16px] font-medium"
+                className="form-input w-full text-[16px] font-medium"
                 onChange={handleInputChange}
               />
             </div>
@@ -167,13 +167,16 @@ const Modal = ({ isOpen, onClose, onSave, blog }: Props) => {
               </select>
             </div>
             <div className="mb-1">
-              <label className="block text-black text-[16px] font-semibold mb-1">
+              <label
+                htmlFor="content-image"
+                className="block text-black text-lg font-semibold mb-1"
+              >
                 Content Image
               </label>
               <img
                 src={updatedBlog?.contentImage || blog.contentImage}
                 alt="Previous"
-                className="w-full mb-2 h-20 object-cover"
+                className="w-full mb-2 h-28 object-cover"
               />
               <input
                 type="file"
@@ -181,7 +184,7 @@ const Modal = ({ isOpen, onClose, onSave, blog }: Props) => {
                 className="form-input"
               />
             </div>
-            <div className="flex justify-evenly">
+            <div className="flex justify-evenly mt-4">
               <button
                 className="btn bg-green-600 text-[16px] font-medium text-white py-2 px-4 rounded-lg"
                 onClick={onConfirm}

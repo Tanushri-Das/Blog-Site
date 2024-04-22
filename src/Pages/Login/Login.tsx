@@ -56,7 +56,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center my-16">
+    <div className="flex justify-center items-center my-20">
       <div className="w-full flex-shrink-0 sm:max-w-lg bg-white mx-auto">
         <form onSubmit={handleLogin} className="form p-6 bg-white rounded-xl">
           <h1 className="text-black text-center text-3xl mb-6 font-bold">
@@ -98,13 +98,13 @@ const Login = () => {
             </div>
           </div>
           <div className="flex justify-center mt-4">
-            <button className="login-btn text-[16px] font-semibold text-white">
+            <button className="login-btn text-lg font-semibold text-white px-8 py-3">
               Login
             </button>
           </div>
           <p className="text-center login-account text-[16px] font-medium mt-4">
             Don’t have an account ?
-            <Link to="/signup" className="create-account ms-1">
+            <Link to="/signup" className="text-[#032174] ms-1">
               Create an account
             </Link>
           </p>

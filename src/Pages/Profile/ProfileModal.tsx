@@ -11,7 +11,7 @@ interface ProfileModalProps {
   };
   onSave: (userData: any) => void;
 }
-const img_hosting_token = "5a3c594cf3fbe5d54c7766406d0635b3";
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
 const ProfileModal: React.FC<ProfileModalProps> = ({
@@ -130,8 +130,8 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
               onChange={(e) => setGender(e.target.value)}
               className="form-input w-full text-[16px] font-medium"
             >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </div>
           <div className="mb-1 text-start flex flex-col">
@@ -141,19 +141,17 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             >
               Profile Picture
             </label>
-            <div className="flex items-center">
-              <img
-                src={image}
-                alt="Profile Pic"
-                className="w-12 h-12 rounded-full mr-3"
-              />
-              <input
-                type="file"
-                id="profile-pic"
-                onChange={handleImageChange}
-                className="form-input w-full"
-              />
-            </div>
+            <img
+              src={image}
+              alt="Profile Pic"
+              className="w-full mb-2 h-28 object-cover"
+            />
+            <input
+              type="file"
+              id="profile-pic"
+              onChange={handleImageChange}
+              className="form-input w-full"
+            />
           </div>
           <div className="flex justify-evenly mt-5">
             <button

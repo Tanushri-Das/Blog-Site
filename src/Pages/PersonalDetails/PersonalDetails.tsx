@@ -14,12 +14,12 @@ const PersonalDetails = () => {
   const [ageError, setAgeError] = useState(false);
   const [genderError, setGenderError] = useState(false);
   const [profilePicError, setProfilePicError] = useState(false);
-  console.log(user);
-  const img_hosting_token = "5a3c594cf3fbe5d54c7766406d0635b3";
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   const handleProfilePicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -96,12 +96,21 @@ const PersonalDetails = () => {
             timer: 1500,
             showConfirmButton: false,
           });
-          navigate(from, { replace: true });
           // Clear form fields
           setName("");
           setAge("");
           // No need to clear gender here
           setProfilePic(null);
+
+          // Check if name is set in localStorage, then redirect
+          const localStorageName = JSON.parse(
+            localStorage.getItem("personal-details") || "{}"
+          ).name;
+          if (localStorageName) {
+            navigate("/create-blogs");
+          } else {
+            navigate(from, { replace: true });
+          }
         }
       })
       .catch((error) => {
@@ -110,7 +119,7 @@ const PersonalDetails = () => {
   };
 
   return (
-    <div className="flex justify-center items-center my-16">
+    <div className="flex justify-center items-center my-20">
       <div className="w-full flex-shrink-0 sm:max-w-lg bg-white mx-auto">
         <form className="form p-6 bg-white rounded-xl" onSubmit={onSubmit}>
           <h1 className="text-black text-center text-3xl mb-6 font-bold">
@@ -198,7 +207,7 @@ const PersonalDetails = () => {
           <div className="flex justify-center mt-4">
             <button
               type="submit"
-              className="login-btn text-[16px] font-semibold text-white"
+              className="login-btn text-lg font-semibold text-white px-8 py-3"
             >
               Submit
             </button>

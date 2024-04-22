@@ -57,8 +57,10 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="my-16">
-      <h1 className="text-center text-3xl font-bold mb-8">All Blogs</h1>
+    <div className="my-20">
+      <h1 className="text-black text-center text-3xl mb-6 font-bold">
+        All Blogs
+      </h1>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 sm:mx-6 md:mx-8 lg:mx-20">
         {blogs.map((blog, index) => (
           <div
@@ -72,10 +74,10 @@ const AllBlogs = () => {
                 className="w-full h-64 object-cover rounded"
               />
             </div>
-            <h2 className="text-xl font-bold text-center pt-4 mb-3">
+            <h2 className="text-2xl font-bold text-center pt-4 mb-3">
               {blog.title}
             </h2>
-            <p className="text-gray-600 mb-6 flex-grow px-4">
+            <p className="text-gray-600 mb-6 flex-grow px-4 text-[16px]">
               {blog.description}
             </p>
             <div className="flex justify-center mb-16">
